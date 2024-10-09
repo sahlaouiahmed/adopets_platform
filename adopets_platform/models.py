@@ -14,4 +14,6 @@ class Pet(models.Model):
     posted_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.name
+        return f"{self.name} | Posted by {self.posted_by}"
+    class Meta:
+        ordering = ["posted_at"]

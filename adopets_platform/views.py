@@ -1,7 +1,9 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.views import generic
+from .models import Pet
 
 
 # Create your views here.
-def adopets(request):
-    return HttpResponse("Welcome to Adopets Platform ... ")
+class PetList(generic.ListView):
+    queryset = Pet.objects.all()
+    template_name = "pet_list.html"
