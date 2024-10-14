@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block title %}Home - Adopets Platform{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Find Your Perfect Pet</h2>
+    {% if messages %}
+    <div class="alert alert-success" role="alert" id="success-message">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+    <script>
+        setTimeout(function() {
+            var message = document.getElementById('success-message');
+            if (message) {
+                message.style.display = 'none';
+            }
+        }, 6000); 
+    </script>
+    {% endif %}
+    <form method="get" class="justify-content-center">
+        <div class="form-row align-items-center justify-content-center mb-3">
+            <div class="col-md-2">
+                <label for="{{ form.species.id_for_label }}">Species</label>
+                {{ form.species }}
+            </div>
+            <div class="col-md-2">
+                <label for="{{ form.breed.id_for_label }}">Breed</label>
+                {{ form.breed }}
+            </div>
+            <div class="col-md-2">
+                <label for="{{ form.city.id_for_label }}">City</label>
+                {{ form.city }}
+            </div>
+            <div class="col-md-2">
+                <label for="{{ form.country.id_for_label }}">Country</label>
+                {{ form.country }}
+            </div>
+            <div class="col-md-2">
+                <label for="{{ form.posted_by.id_for_label }}">Posted by</label>
+                {{ form.posted_by }}
+            </div>
+            <div class="col-md-2 d-flex align-items-end">
+                <button type="submit" class="btn btn-primary w-100">Search</button>
+            </div>
+        </div>
+    </form>
+    <div class="row mt-4">
+        {% for pet in pets %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="{{ pet.photo.url }}" class="card-img-top" alt="{{ pet.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ pet.name }}</h5>
+                    <p class="card-text">{{ pet.description }}</p>
+                    <a href="{% url 'pet_detail' pet.id %}" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Received Adoption Requests{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Received Adoption Requests</h2>
+    {% if adoption_requests %}
+    <ul class="list-group mt-3">
+        {% for request in adoption_requests %}
+        <li class="list-group-item">
+            <strong>Pet Name:</strong> {{ request.pet.name }}<br>
+            <strong>Status:</strong> {{ request.status }}<br>
+            <strong>Message:</strong> {{ request.message }}<br>
+            <strong>Requested By:</strong> {{ request.requester.username }}<br>
+            <strong>Requested On:</strong> {{ request.created_at|date:"d M Y" }}
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p class="text-center mt-5">You have not received any adoption requests yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

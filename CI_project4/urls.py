@@ -18,8 +18,11 @@ from django.contrib import admin
 from django.urls import path, include
 
 
-
 urlpatterns = [
     path('', include("adopets_platform.urls"), name='adopets_platform-urls'),
+    path('accounts/', include('allauth.urls')),
+    path('summernote/', include('django_summernote.urls')),
     path('admin/', admin.site.urls),
 ]
+
+
