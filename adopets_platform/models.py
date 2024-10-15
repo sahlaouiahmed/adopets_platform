@@ -22,14 +22,24 @@ class Pet(models.Model):
 
 
 class AdoptionRequest(models.Model):
+    STATUS_PENDING = 'pending'
+    STATUS_APPROVED = 'approved'
+    STATUS_REJECTED = 'rejected'
+    
+    STATUS_CHOICES = [
+        (STATUS_PENDING, 'Pending'),
+        (STATUS_APPROVED, 'Approved'),
+        (STATUS_REJECTED, 'Rejected'),
+    ]
+    
     pet = models.ForeignKey(Pet, on_delete=models.CASCADE, related_name='adoption_requests')
     requester = models.ForeignKey(User, on_delete=models.CASCADE, related_name='adoption_requests')
     message = models.TextField()
-    status = models.CharField(max_length=20, choices=[('pending', 'Pending'), ('approved', 'Approved'), ('rejected', 'Rejected')], default='pending')
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default=STATUS_PENDING)
     created_at = models.DateTimeField(auto_now_add=True)
-
+    
     def __str__(self):
-        return f"{self.requester.username} - {self.pet.name}"  
-
+        return f"{self.requester.username} - {self.pet.name}"
+    
     class Meta:
         ordering = ["created_at"]

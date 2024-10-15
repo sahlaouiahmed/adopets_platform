@@ -1,5 +1,10 @@
-from . import views
+from . import views 
 from django.urls import path
+from .views import update_status , my_posted_pets, add_pet
+from django.conf import settings
+from django.conf.urls.static import static
+
+
 
 
 urlpatterns = [
@@ -8,6 +13,8 @@ urlpatterns = [
     path('pets/<int:pet_id>/', views.pet_detail, name='pet_detail'),
     path('my_adoption_requests/', views.my_adoption_requests, name='my_adoption_requests'),
     path('received_adoption_requests/', views.received_adoption_requests, name='received_adoption_requests'),
-
-]
+    path('update_status/<int:request_id>/', update_status, name='update_status'),
+    path('my-posted-pets/', my_posted_pets, name='my_posted_pets'),
+    path('add-pet/', add_pet, name='add_pet'),
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

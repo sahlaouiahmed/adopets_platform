@@ -48,7 +48,14 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'django_summernote',
     'adopets_platform',
+    'crispy_forms',
+    'crispy_bootstrap4',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
@@ -84,6 +91,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'CI_project4.wsgi.application'
+
 
 
 # Database

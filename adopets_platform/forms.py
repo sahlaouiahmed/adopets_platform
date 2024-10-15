@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import User, AdoptionRequest
+from .models import Pet
 
 class UserRegistrationForm(UserCreationForm):
     class Meta:
@@ -33,3 +34,9 @@ class AdoptionRequestFilterForm(forms.Form):
     ]
     status = forms.ChoiceField(choices=STATUS_CHOICES, required=False, widget=forms.Select(attrs={'class': 'form-control'}))
 
+
+
+class PetForm(forms.ModelForm):
+    class Meta:
+        model = Pet
+        fields = ['name', 'age', 'breed', 'species', 'description', 'photo', 'city', 'country']

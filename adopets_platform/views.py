@@ -2,12 +2,11 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
 from .models import Pet ,AdoptionRequest
 from django.contrib.auth.models import User
-from .forms import UserRegistrationForm, PetSearchForm, AdoptionRequestForm, AdoptionRequestFilterForm
+from .forms import UserRegistrationForm, PetSearchForm, AdoptionRequestForm, AdoptionRequestFilterForm, PetForm
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
 from django.contrib import messages
-
-
 
 
 # Create your views here.
@@ -34,6 +33,10 @@ def index(request):
     return render(request, 'adopets_platform/index.html', {'form': form, 'pets': pets})
 
 
+def pet_detail(request, pet_id):
+    pet = get_object_or_404(Pet, id=pet_id)
+    return render(request, 'adopets_platform/pet_detail.html', {'pet': pet})
+
 
 def signup(request):
     if request.method == 'POST':
@@ -45,13 +48,6 @@ def signup(request):
     else:
         form = UserRegistrationForm()
     return render(request, 'signup.html', {'form': form})
-
-
-
-def pet_detail(request, pet_id):
-    pet = get_object_or_404(Pet, id=pet_id)
-    return render(request, 'adopets_platform/pet_detail.html', {'pet': pet})
-
 
 @login_required
 def adopt_request(request, pet_id):
@@ -89,6 +85,35 @@ def my_adoption_requests(request):
 @login_required
 def received_adoption_requests(request):
     pets = Pet.objects.filter(posted_by=request.user)
-    adoption_requests = AdoptionRequest.objects.filter(pet__in=pets)
+    adoption_requests = AdoptionRequest.objects.filter(pet__in=pets).order_by('-created_at')
     return render(request, 'adopets_platform/received_adoption_requests.html', {'adoption_requests': adoption_requests})
 
+
+@require_POST
+def update_status(request, request_id):
+    adoption_request = get_object_or_404(AdoptionRequest, id=request_id, requester=request.user)
+    new_status = request.POST.get('status')
+    if new_status in [choice[0] for choice in AdoptionRequest.STATUS_CHOICES]:
+        adoption_request.status = new_status
+        adoption_request.save()
+    return redirect('received_adoption_requests')
+
+
+def my_posted_pets(request):
+    if request.user.is_authenticated:
+        posted_pets = Pet.objects.filter(posted_by=request.user)
+        return render(request, 'adopets_platform/my_posted_pets.html', {'posted_pets': posted_pets})
+    else:
+        return redirect('account_login')
+
+def add_pet(request):
+    if request.method == 'POST':
+        form = PetForm(request.POST, request.FILES)
+        if form.is_valid():
+            pet = form.save(commit=False)
+            pet.posted_by = request.user
+            pet.save()
+            return redirect('home')
+    else:
+        form = PetForm()
+    return render(request, 'adopets_platform/add_pet.html', {'form': form})
