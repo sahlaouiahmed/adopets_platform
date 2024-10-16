@@ -16,5 +16,9 @@ urlpatterns = [
     path('update_status/<int:request_id>/', update_status, name='update_status'),
     path('my-posted-pets/', my_posted_pets, name='my_posted_pets'),
     path('add-pet/', add_pet, name='add_pet'),
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] 
+
+
+
+
 
