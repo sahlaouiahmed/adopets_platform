@@ -9,8 +9,8 @@ class Pet(models.Model):
     age = models.IntegerField()
     description = models.TextField()
     photo = models.ImageField(upload_to='pet_photos/')
-    city = models.CharField(max_length=100, default='Default City')  # Adding default value
-    country = models.CharField(max_length=100, default='Default Country')  # Adding default value
+    city = models.CharField(max_length=100) 
+    country = models.CharField(max_length=100) 
     posted_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posted_pets')
     posted_at = models.DateTimeField(auto_now_add=True)
 
