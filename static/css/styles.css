@@ -1,100 +1,25 @@
-/* General Styles */
-body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    background-color: #f0f2f5;
-    color: #333;
-    margin: 0;
-    padding: 0;
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
 }
 
-header {
-    background-color: #343a40;
-    color: white;
-    padding: 20px 0;
+.card-button-bottom-right {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 25%;
+    font-size: 0.75rem;
+    padding: 0.3rem 0.6rem;
+    white-space: nowrap;
+    text-align: center;
 }
 
-header h1 {
-    margin: 0;
-}
-
-nav .navbar-nav .nav-link {
-    color: #007bff;
-}
-
-nav .navbar-nav .nav-link:hover {
-    color: #0056b3;
-}
-
-main {
-    padding: 20px;
-}
-
-footer {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 0;
-}
-
-footer p {
-    margin: 0;
-}
-
-/* Pet Card Styles */
-.pet-card {
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 15px;
-    background-color: #fff;
-    transition: box-shadow 0.3s;
-}
-
-.pet-card:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.pet-card img {
-    max-width: 100%;
-    border-radius: 5px;
-}
-
-.pet-card h5 {
-    margin-top: 0;
-}
-
-.pet-card p {
-    margin-bottom: 0;
-}
-/* Form Styles */
-form {
-    margin: 20px 0;
-}
-
-form label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-form input, form textarea, form select {
+.pet-details-img {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+    height: auto;  /* Maintain aspect ratio */
+    max-height: 500px;  /* Add a max height to prevent overly large images */
+    object-fit: cover;
+    border-radius: 5px;
 }
 
-form button {
-    background-color: #007bff;
-    color: white;
-    padding: 20px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-form button:hover {
-    background-color: #0056b3;
-}
 

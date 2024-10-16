@@ -8,7 +8,7 @@ class Pet(models.Model):
     breed = models.CharField(max_length=100)
     age = models.IntegerField()
     description = models.TextField()
-    photo = models.ImageField(upload_to='images/pet_photos/')
+    photo = models.ImageField(upload_to='static/images/pet_photos/')
     city = models.CharField(max_length=100) 
     country = models.CharField(max_length=100) 
     posted_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posted_pets')

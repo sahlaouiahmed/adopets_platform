@@ -8,8 +8,7 @@
     <div class="text-center mt-4">
         <a href="{% url 'add_pet' %}" class="btn btn-success">Add a New Pet</a>
     </div>
-    <br>
-    <br>
+    <br><br>
     {% endif %}
     {% if messages %}
     <div class="alert alert-success" role="alert" id="success-message">
@@ -57,13 +56,15 @@
     </div>
     <div class="row mt-4">
         {% for pet in pets %}
-        <div class="col-md-4 mb-4">
-            <div class="card">
+        <div class="col-md-4 mb-4 position-relative">
+            <div class="card h-100 d-flex flex-column">
                 <img src="{{ pet.photo.url }}" class="card-img-top" alt="{{ pet.name }}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ pet.name }}</h5>
-                    <p class="card-text">{{ pet.description }}</p>
-                    <a href="{% url 'pet_detail' pet.id %}" class="btn btn-primary">View Details</a>
+                <div class="card-body flex-grow-1 d-flex flex-column justify-content-between">
+                    <div>
+                        <h5 class="card-title">{{ pet.name }}</h5>
+                        <p class="card-text">{{ pet.description }}</p>
+                    </div>
+                    <a href="{% url 'pet_detail' pet.id %}" class="btn btn-primary card-button-bottom-right">View Details</a>
                 </div>
             </div>
         </div>
