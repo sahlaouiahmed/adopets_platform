@@ -2,7 +2,7 @@
 {% load custom_filters %}
 {% block title %}Home - Adopets Platform{% endblock %}
 {% block content %}
-<div class="container mt-5">
+<div class="container-fluid mt-5" style="width: 90%; margin: auto;">
     <h2 class="text-center mb-4">Find Your Perfect Pet</h2>
     {% if user.is_authenticated %}
     <div class="text-center mt-4">
@@ -56,15 +56,15 @@
     </div>
     <div class="row mt-4">
         {% for pet in pets %}
-        <div class="col-md-4 mb-4 position-relative">
+        <div class="col-6 col-md-4 mb-4">
             <div class="card h-100 d-flex flex-column">
-                <img src="{{ pet.photo.url }}" class="card-img-top" alt="{{ pet.name }}">
+                <img src="{{ pet.photo.url }}" class="card-img-top img-fluid" alt="{{ pet.name }}" style="height: 250px; object-fit: cover; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                 <div class="card-body flex-grow-1 d-flex flex-column justify-content-between">
                     <div>
                         <h5 class="card-title">{{ pet.name }}</h5>
                         <p class="card-text">{{ pet.description }}</p>
+                        <a href="{% url 'pet_detail' pet.id %}" class="btn btn-primary card-button-bottom-left">View Details</a>
                     </div>
-                    <a href="{% url 'pet_detail' pet.id %}" class="btn btn-primary card-button-bottom-right">View Details</a>
                 </div>
             </div>
         </div>

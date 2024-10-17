@@ -91,12 +91,15 @@ def received_adoption_requests(request):
 
 @require_POST
 def update_status(request, request_id):
-    adoption_request = get_object_or_404(AdoptionRequest, id=request_id, requester=request.user)
+    adoption_request = get_object_or_404(AdoptionRequest, id=request_id)
     new_status = request.POST.get('status')
-    if new_status in [choice[0] for choice in AdoptionRequest.STATUS_CHOICES]:
+    if new_status in ['pending', 'approved', 'rejected']:
         adoption_request.status = new_status
         adoption_request.save()
-    return redirect('received_adoption_requests')
+        messages.success(request, f'Status updated to {new_status}.')
+    else:
+        messages.error(request, 'Invalid status update.')
+    return redirect('received_adoption_requests') 
 
 
 def my_posted_pets(request):
@@ -117,3 +120,11 @@ def add_pet(request):
     else:
         form = PetForm()
     return render(request, 'adopets_platform/add_pet.html', {'form': form})
+
+
+@require_POST
+def delete_adoption_request(request, request_id):
+    adoption_request = get_object_or_404(AdoptionRequest, id=request_id, requester=request.user)
+    adoption_request.delete()
+    messages.success(request, 'Adoption request successfully deleted.')
+    return redirect('my_adoption_requests')

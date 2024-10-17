@@ -1,3 +1,9 @@
+.page-container {
+    width: 98%;
+    margin: 0 auto;
+}
+
+
 .card-img-top {
     height: 200px;
     object-fit: cover;
@@ -21,5 +27,8 @@
     object-fit: cover;
     border-radius: 5px;
 }
+
+
+
 
 
