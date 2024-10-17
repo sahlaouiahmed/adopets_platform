@@ -3,6 +3,23 @@
 {% block content %}
 <div class="container mt-5">
     <h2 class="text-center mb-4">My Posted Pets</h2>
+    
+    {% if messages %}
+    <div class="alert alert-success" role="alert" id="success-message">
+        {% for message in messages %}
+        {{ message }}
+        {% endfor %}
+    </div>
+    <script>
+        setTimeout(function () {
+            var message = document.getElementById('success-message');
+            if (message) {
+                message.style.display = 'none';
+            }
+        }, 6000); // Hide message after 6 seconds
+    </script>
+    {% endif %}
+    
     {% if posted_pets %}
     <ul class="list-group mt-3">
         {% for pet in posted_pets %}
@@ -17,12 +34,15 @@
                     </div>
                 </div>
                 <div>
-                    <a href="#" class="btn btn-outline-primary btn-sm mr-2">
+                    <a href="{% url 'edit_pet' pet.id %}" class="btn btn-outline-primary btn-sm mr-2">
                         <i class="fas fa-edit"></i>
                     </a>
-                    <a href="#" class="btn btn-outline-danger btn-sm">
-                        <i class="fas fa-trash-alt"></i>
-                    </a>
+                    <form method="post" action="{% url 'delete_pet' pet.id %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-danger btn-sm">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </form>
                 </div>
             </div>
         </li>
@@ -32,4 +52,6 @@
     <p class="text-center mt-5">You have not posted any pets yet.</p>
     {% endif %}
 </div>
+<br>
+<br>
 {% endblock %}

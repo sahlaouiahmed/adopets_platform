@@ -40,3 +40,5 @@ class PetForm(forms.ModelForm):
     class Meta:
         model = Pet
         fields = ['name', 'age', 'breed', 'species', 'description', 'photo', 'city', 'country']
+
+

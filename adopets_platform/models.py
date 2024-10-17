@@ -18,7 +18,7 @@ class Pet(models.Model):
         return self.name
 
     class Meta:
-        ordering = ["posted_at"]
+        ordering = ["-posted_at"]
 
 
 class AdoptionRequest(models.Model):
@@ -43,3 +43,4 @@ class AdoptionRequest(models.Model):
     
     class Meta:
         ordering = ["created_at"]
+
