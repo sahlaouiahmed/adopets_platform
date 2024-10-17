@@ -1,34 +1,54 @@
-.page-container {
-    width: 98%;
-    margin: 0 auto;
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
 }
 
-
-.card-img-top {
-    height: 200px;
-    object-fit: cover;
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.card-button-bottom-right {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    width: 25%;
-    font-size: 0.75rem;
-    padding: 0.3rem 0.6rem;
-    white-space: nowrap;
-    text-align: center;
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
-.pet-details-img {
-    width: 100%;
-    height: auto;  /* Maintain aspect ratio */
-    max-height: 500px;  /* Add a max height to prevent overly large images */
-    object-fit: cover;
+.card-body {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+.card-button-bottom-left {
+    margin-top: 10px;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    text-decoration: none;
     border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+    align-self: flex-start;
 }
 
-
-
+.card-button-bottom-left:hover {
+    background-color: #28a745; /* Green color */
+    color: #fff; /* White text */
+    transform: scale(1.05);
+    text-decoration: none; /* Ensure no underline */
+}
 
 

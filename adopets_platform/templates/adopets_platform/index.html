@@ -52,24 +52,19 @@
             </div>
         </div>
     </form>
-    <div class="text-center mt-4">
-    </div>
-    <div class="row mt-4">
+    <div class="grid-container mt-4">
         {% for pet in pets %}
-        <div class="col-6 col-md-4 mb-4">
-            <div class="card h-100 d-flex flex-column">
-                <img src="{{ pet.photo.url }}" class="card-img-top img-fluid" alt="{{ pet.name }}" style="height: 250px; object-fit: cover; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-                <div class="card-body flex-grow-1 d-flex flex-column justify-content-between">
-                    <div>
-                        <h5 class="card-title">{{ pet.name }}</h5>
-                        <p class="card-text">{{ pet.description }}</p>
-                        <a href="{% url 'pet_detail' pet.id %}" class="btn btn-primary card-button-bottom-left">View Details</a>
-                    </div>
-                </div>
+        <div class="card">
+            <img src="{{ pet.photo.url }}" class="card-img-top img-fluid" alt="{{ pet.name }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ pet.name }}</h5>
+                <p class="card-text"><i class="fas fa-map-marker-alt"></i> {{ pet.city }}, {{ pet.country }}</p>
+                <a href="{% url 'pet_detail' pet.id %}" class="card-button-bottom-left">View Details</a>
             </div>
         </div>
         {% endfor %}
     </div>
 </div>
-
+<br>
+<br>
 {% endblock %}
