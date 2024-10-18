@@ -26,7 +26,7 @@ def index(request):
         if form.cleaned_data['posted_by']:
             pets = pets.filter(posted_by__username__icontains=form.cleaned_data['posted_by'])
 
-    paginator = Paginator(pets, 15)  
+    paginator = Paginator(pets, 10)  
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
