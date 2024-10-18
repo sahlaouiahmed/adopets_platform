@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator, Page
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
 from .models import Pet, AdoptionRequest
@@ -8,11 +9,6 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 
-# List all pets with pagination
-class PetList(generic.ListView):
-    queryset = Pet.objects.all()
-    template_name = "adopets_platform/index.html"
-    paginate_by = 6
 
 # Display the home page with search functionality
 def index(request):
@@ -29,7 +25,13 @@ def index(request):
             pets = pets.filter(country__icontains=form.cleaned_data['country'])
         if form.cleaned_data['posted_by']:
             pets = pets.filter(posted_by__username__icontains=form.cleaned_data['posted_by'])
-    return render(request, 'adopets_platform/index.html', {'form': form, 'pets': pets})
+
+    paginator = Paginator(pets, 15)  
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'adopets_platform/index.html', {'form': form, 'page_obj': page_obj})
+
 
 # Display the details of a specific pet
 def pet_detail(request, pet_id):

@@ -8,13 +8,23 @@ from django.contrib import messages
 
 
 # Create your views here.
+from django.core.paginator import Paginator
+from django.shortcuts import render
+from .models import Article
+
 def article_list(request):
     category = request.GET.get('category')
     if category:
         articles = Article.objects.filter(category=category)
     else:
         articles = Article.objects.all()
-    return render(request, 'tips/article_list.html', {'articles': articles})
+    
+    paginator = Paginator(articles, 12)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
+    return render(request, 'tips/article_list.html', {'articles': page_obj.object_list, 'page_obj': page_obj})
+
 
 def article_detail(request, article_id):
     article = get_object_or_404(Article, id=article_id)
