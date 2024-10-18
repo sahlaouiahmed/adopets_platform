@@ -7,6 +7,7 @@ class Pet(models.Model):
     species = models.CharField(max_length=100)
     breed = models.CharField(max_length=100)
     age = models.IntegerField()
+    gender = models.CharField(max_length=10, choices=[('Male', 'Male'), ('Female', 'Female')], default='Male')
     description = models.TextField()
     photo = models.ImageField(upload_to='static/images/pet_photos/')
     city = models.CharField(max_length=100) 
@@ -42,5 +43,5 @@ class AdoptionRequest(models.Model):
         return f"{self.requester.username} - {self.pet.name}"
     
     class Meta:
-        ordering = ["created_at"]
+        ordering = ["-created_at"]
 

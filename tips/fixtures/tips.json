@@ -1,0 +1,57 @@
+[
+    {
+        "model": "tips.article",
+        "pk": 1,
+        "fields": {
+            "title": "Essential Dog Care Tips",
+            "content": "Caring for your dog involves regular checkups, a balanced diet, and lots of love. Ensure your dog gets plenty of exercise, regular grooming, and mental stimulation to keep them happy and healthy. Keep up with vaccinations and vet visits, and always provide fresh water. Socializing your dog from a young age can help prevent behavioral issues. Remember, positive reinforcement training is key!",
+            "category": "Dogs",
+            "author": 1,
+            "created_at": "2024-10-18T14:00:00Z"
+        }
+    },
+    {
+        "model": "tips.article",
+        "pk": 2,
+        "fields": {
+            "title": "Feeding Your Cat: Best Practices",
+            "content": "Cats are obligate carnivores, meaning they require a diet rich in animal protein. Avoid feeding your cat dog food, as it lacks essential nutrients. Provide clean, fresh water at all times. Monitor your cat's weight and adjust food portions accordingly. Consider a mix of wet and dry food for balanced nutrition. Regularly clean food and water dishes to prevent bacterial growth. Treats should be given in moderation to avoid obesity.",
+            "category": "Cats",
+            "author": 2,
+            "created_at": "2024-10-18T14:00:00Z"
+        }
+    },
+    {
+        "model": "tips.article",
+        "pk": 3,
+        "fields": {
+            "title": "How to Keep Your Fish Tank Clean",
+            "content": "Regular cleaning is essential to maintain a healthy environment for your fish. Perform partial water changes weekly to remove waste and toxins. Clean the tank glass to prevent algae buildup. Check the filter regularly and replace it as needed. Avoid overfeeding your fish, as uneaten food can pollute the tank. Ensure the water temperature and pH levels are appropriate for your fish species. Keep an eye on your fish's health and behavior for signs of illness.",
+            "category": "Fish",
+            "author": 3,
+            "created_at": "2024-10-18T14:00:00Z"
+        }
+    },
+    {
+        "model": "tips.article",
+        "pk": 4,
+        "fields": {
+            "title": "Bird Care: What You Need to Know",
+            "content": "Birds require a balanced diet, regular grooming, and a stimulating environment. Provide a variety of fresh fruits, vegetables, and high-quality bird food. Ensure your bird's cage is spacious and clean. Provide perches, toys, and opportunities for social interaction. Regularly trim your bird's nails and feathers, or have a professional do it. Monitor your bird for signs of stress or illness, and consult a vet if needed. Encourage your bird to exercise by flying in a safe space.",
+            "category": "Birds",
+            "author": 4,
+            "created_at": "2024-10-18T14:00:00Z"
+        }
+    },
+    {
+        "model": "tips.article",
+        "pk": 5,
+        "fields": {
+            "title": "Rabbit Care for Beginners",
+            "content": "Rabbits are social animals that need a lot of space to run and play. Provide a large, safe enclosure with plenty of room to hop around. Feed your rabbit a diet of hay, fresh vegetables, and high-quality pellets. Regularly clean their living space to prevent disease. Ensure they have access to fresh water at all times. Socialize your rabbit with gentle handling to build trust. Keep an eye on their dental health, as rabbits' teeth grow continuously. Offer toys and activities to keep them mentally stimulated.",
+            "category": "Rabbits",
+            "author": 5,
+            "created_at": "2024-10-18T14:00:00Z"
+        }
+    }
+]

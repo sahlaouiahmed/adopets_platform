@@ -58,6 +58,7 @@
             <img src="{{ pet.photo.url }}" class="card-img-top img-fluid" alt="{{ pet.name }}">
             <div class="card-body">
                 <h5 class="card-title">{{ pet.name }}</h5>
+                <p class="card-text"><strong>Gender:</strong> {{ pet.gender }}</p>
                 <p class="card-text"><i class="fas fa-map-marker-alt"></i> {{ pet.city }}, {{ pet.country }}</p>
                 <a href="{% url 'pet_detail' pet.id %}" class="card-button-bottom-left">View Details</a>
             </div>
@@ -65,6 +66,5 @@
         {% endfor %}
     </div>
 </div>
-<br>
-<br>
+<br><br>
 {% endblock %}

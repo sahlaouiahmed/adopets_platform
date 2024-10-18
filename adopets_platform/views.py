@@ -52,18 +52,25 @@ def signup(request):
 @login_required
 def adopt_request(request, pet_id):
     pet = get_object_or_404(Pet, id=pet_id)
+    owner_name = pet.posted_by.username
+    requester_name = request.user.username
+    requester_email = request.user.email
     if request.method == 'POST':
-        form = AdoptionRequestForm(request.POST)
+        form = AdoptionRequestForm(request.POST, initial={'email': requester_email})
         if form.is_valid():
             adoption_request = form.save(commit=False)
+            adoption_request.email = requester_email  # Set email from the logged-in user
+            adoption_request.user = request.user  # Associate the request with the user
             adoption_request.pet = pet
-            adoption_request.requester = request.user
+            adoption_request.requester = request.user  # Set the requester_id
             adoption_request.save()
-            messages.success(request, 'Your adoption request was submitted successfully and is waiting to be approved.')
-            return redirect('home')
+            return redirect('success_page')
     else:
-        form = AdoptionRequestForm()
-    return render(request, 'adopets_platform/adopt_request.html', {'form': form, 'pet': pet})
+        form = AdoptionRequestForm(initial={'email': requester_email}, requester_name=requester_name, owner_name=owner_name, pet_name=pet.name)
+    return render(request, 'adopets_platform/adopt_request.html', {'form': form})
+
+def success_page(request):
+    return render(request, 'adopets_platform/success_page.html')
 
 # Display the adoption requests made by the user
 @login_required
