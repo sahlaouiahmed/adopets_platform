@@ -1,131 +1,224 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Adopets Platform
 
-Welcome Ahmed Sahlaoui,
+Welcome to Adopets Platform, your go-to solution for pet adoption! Our platform is designed to simplify and enhance the pet adoption process, making it easier for potential adopters to connect with pet owners. With Adopets, finding a loving home for every pet is just a few clicks away. Whether you're looking to adopt a pet or rehome a pet, our user-friendly interface and powerful search capabilities ensure a seamless experience for all users.
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+Additionally, explore our comprehensive library of pet care articles to provide the best for your new furry friends. Share your experiences, tips, and stories with other pet lovers in our community, and learn from others' experiences to make the journey of pet adoption even more rewarding.
 
-You can safely delete this README.md file or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **June 18, 2024**
+Our website is deployed on Heroku. Check it out [here](https://adopetsplatform-4e35c86a8c8e.herokuapp.com/).
 
-## Gitpod Reminders
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
 
-`python3 -m http.server`
+## Key Features
 
-A blue button should appear to click: _Make Public_,
+### Posting Pets
+Easily post pets available for adoption on our platform. Provide detailed information, including photos, breed, age, and any special requirements. This helps potential adopters find the perfect match quickly and efficiently.
 
-Another blue button should appear to click: _Open Browser_.
+### Adoption Requests
+Manage adoption requests seamlessly. Potential adopters can express their interest in adopting pets, and pet owners or shelters can review and respond to these requests. Our streamlined process ensures a smooth and transparent adoption experience for everyone involved.
 
-To run a backend Python file, type `python3 app.py` if your Python file is named `app.py`, of course.
+### Research Using Filters
+Find the ideal pet using our powerful search filters. Filter by species, breed, age, location, and more to narrow down your options and find pets that match your preferences. Our intuitive search functionality makes it easy to discover pets that are looking for a loving home.
 
-A blue button should appear to click: _Make Public_,
+### Account Creation
+Sign up and create an account to start using the Adopets Platform. Whether you're a pet owner looking to rehome a pet or a potential adopter searching for a new companion, having an account allows you to manage your listings, adoption requests, and communication with ease.
 
-Another blue button should appear to click: _Open Browser_.
+### Articles of Pet Care
+Explore our comprehensive library of articles on pet care. From feeding tips to grooming guides, our articles are designed to help pet owners provide the best care for their furry friends. Stay informed and ensure your pets are happy and healthy with our expert advice.
 
-By Default, Gitpod gives you superuser security privileges. Therefore, you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+## Technologies Used
 
-To log into the Heroku toolbelt CLI:
+### Django
+Django is the backbone of our platform. It’s a high-level Python web framework that encourages rapid development and clean, pragmatic design. Django takes care of much of the hassle of web development, allowing us to focus on writing your app without needing to reinvent the wheel. 
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+### PostgreSQL
+We use PostgreSQL as our database management system. It’s a powerful, open-source object-relational database system that has earned a strong reputation for reliability, feature robustness, and performance.
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you, so do not share it. If you accidentally make it public, you can create a new one with _Regenerate API Key_.
+### JavaScript
+JavaScript powers the interactive elements of our site, ensuring a smooth and dynamic user experience. It's an essential technology for making our web pages more engaging and functional.
 
-### Connecting your Mongo database
+### HTML
+HTML (HyperText Markup Language) is used to structure our web pages and content. It forms the skeleton of our web application, providing the essential building blocks for layout and organization.
 
-- **Connect to Mongo CLI on a IDE**
-- navigate to your MongoDB Clusters Sandbox
-- click **"Connect"** button
-- select **"Connect with the MongoDB shell"**
-- select **"I have the mongo shell installed"**
-- choose **mongosh (2.0 or later)** for : **"Select your mongo shell version"**
-- choose option: **"Run your connection string in your command line"**
-- in the terminal, paste the copied code `mongo "mongodb+srv://<CLUSTER-NAME>.mongodb.net/<DBname>" --apiVersion 1 --username <USERNAME>`
-  - replace all `<angle-bracket>` keys with your own data
-- enter password _(will not echo **\*\*\*\*** on screen)_
+### CSS
+CSS (Cascading Style Sheets) is used for styling our HTML. It allows us to create a visually appealing interface that is both user-friendly and consistent across different browsers and devices.
 
-------
+### Bootstrap
+Bootstrap is a popular front-end framework for developing responsive and mobile-first websites. It provides a collection of CSS and JavaScript components that make it easier to design beautiful and responsive web pages quickly.
 
-## Release History
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+## Website Functionalities
 
-**June 18, 2024,** Add Mongo back into template
+### User Registration and Login
+- **Create an Account**: Users can sign up and create an account by providing their username, email, and password. This allows them to access additional features and manage their activity on the platform.
+- **Login**: Registered users can log in to their accounts using their credentials, ensuring secure access to their personalized dashboard.
 
-**June 14, 2024,** Temporarily remove Mongo until the key issue is resolved
+![User sign up and login interface](static/images/readme_photos/sign_up&login.png)
 
-**May 28 2024:** Fix Mongo and Links installs
+### Dashboard
+- **User Dashboard**: Once logged in, users have access to a personalized dashboard where they can manage their posted pets, adoption requests, recieved adoption requests and their posted articles . The dashboard provides an overview of their activity on the platform.
 
-**April 26 2024:** Update node version to 16
+![Home page ](static/images/readme_photos/home.png)
 
-**September 20 2023:** Update Python version to 3.9.17.
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+### Posting Pets
+- **Add New Pet**: Users can post pets available for adoption by providing detailed information such as name, species, breed, age, gender, description, and photos. This helps potential adopters find the right pet easily.
+- **Manage Posts**: Users can edit or delete their posted pets from their dashboard, ensuring that the information is always up-to-date.
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+![Postingpets](static/images/readme_photos/My-Posted-Pets.png)
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+### Adoption Requests
+- **Submit Adoption Request**: Potential adopters can express their interest in adopting a pet by submitting an adoption request. They can write a message to the pet owner explaining why they are a good fit for the pet.
+- **View Adoption Requests**: Pet owners can view the adoption requests they have received, including messages from potential adopters. This allows them to review and respond to requests directly from their dashboard.
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+![AdoptionRequests](static/images/readme_photos/AdoptionRequest_Model.png)
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+### Pet Care Articles
+- **Browse Articles**: Users can explore a comprehensive library of pet care articles covering various topics such as feeding, grooming, training, and health. The articles are designed to provide valuable information to pet owners and adopters.
+- **Write and Share Articles**: Registered users can contribute to the community by writing and sharing their own articles. This allows them to share their experiences and tips with other pet lovers.
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+![AdoptionRequests](static/images/readme_photos/Petcaretips.png)
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+### Search and Filters
+- **Search for Pets**: Users can search for pets based on various criteria such as species, breed, age, and location. This helps them find pets that match their preferences quickly and easily.
+- **Filter Results**: Users can apply filters to narrow down their search results, making it easier to find the perfect pet.
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+![research filters](static/images/readme_photos/filters.png)
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
 
-------
 
-## FAQ about the uptime script
 
-**Why have you added this script?**
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
 
-**How will this affect me?**
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
 
-**So….?**
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
 
-**Can I opt out?**
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
 
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
 
-**Anything more?**
 
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
 
----
 
-Happy coding!
+## Entity-Relationship Diagrams (ERD)
+
+Here are the ERDs for each model in the Adopets Platform database.
+
+### User Model
+
+#### Diagram:
+
+Here's the Entity-Relationship Diagram (ERD) for the Django standard User model:
+
+![User Model ERD](static/images/readme_photos/user_model.png)
+
+#### Relationships:
+
+- Groups: A many-to-many relationship with the Group model.
+
+- Permissions: A many-to-many relationship with the Permission model.
+
+### Pet Model 
+
+#### Diagram:
+
+![Pet Model ERD](static/images/readme_photos/pet_model.png)
+
+#### Relationships
+- User has a one-to-many relationship with Pet (a single user can post multiple pets).
+
+### AdoptionRequest Model
+
+#### Diagram:
+
+![ AdoptionRequest Model ERD](static/images/readme_photos/AdoptionRequest_Model.png)
+
+#### Relationships
+
+- User has a one-to-many relationship with AdoptionRequest (a single user can make multiple adoption requests).
+
+- Pet has a one-to-many relationship with AdoptionRequest (a single pet can have multiple adoption requests).
+
+### Article Model
+
+#### Diagram:
+
+![ Article Model ERD](static/images/readme_photos/Article_Model.png)
+
+#### Relationships
+
+- User has a one-to-many relationship with Article (a single user can author multiple articles).
+
+
+
+## Testing
+
+To ensure the robustness and reliability of the Adopets Platform, we created comprehensive tests for all forms using Django's `unittest` framework. Here are the details of the tests we implemented:
+
+### Form Tests
+
+#### User Registration Form
+We tested the `UserRegistrationForm` to ensure that users can successfully register with valid data, and that errors are properly handled when the data is invalid or incomplete.
+
+#### Pet Form
+We thoroughly tested the `PetForm` to confirm that users can add new pets with complete and valid information, including an image upload. We also verified that the form correctly handles missing or invalid data.
+
+#### Adoption Request Form
+The `AdoptionRequestForm` was tested to check that adoption requests can be submitted with a pre-filled message, and that the form is valid with both the default and custom initial messages.
+
+#### Pet Search Form
+We tested the `PetSearchForm` to ensure that users can search for pets based on various criteria such as species, breed, city, country, and posted by. The form was validated to work correctly with full, partial, and blank data.
+
+#### Adoption Request Filter Form
+We tested the `AdoptionRequestFilterForm` to confirm that users can filter adoption requests based on their status (pending, approved, rejected). The form was tested with valid, empty, and invalid data to ensure proper functionality.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Future Enhancements
+
+We have some exciting plans for the Adopets Platform to make it even more user-friendly and comprehensive. Here are some of the enhancements we're considering:
+
+1. **Mobile Application**: Developing a mobile app for both iOS and Android to make it even easier for users to access Adopets on the go.
+
+2. **Advanced Search Filters**: Adding more advanced filters such as pet size, temperament, and special needs to help users find their perfect match more efficiently.
+
+3. **Real-time Chat**: Implementing real-time chat functionality to allow instant communication between adopters and pet owners.
+
+4. **Integration with Veterinary Services**: Partnering with local veterinary services to provide health check-ups and vaccinations for pets before adoption.
+
+5. **Adoption Events**: Organizing and promoting local adoption events where users can meet pets in person and interact with other pet lovers.
+
+6. **Pet Training Resources**: Providing a collection of resources and tutorials on pet training and behavior to help new pet owners.
+
+7. **Donation and Sponsorship**: Enabling users to donate or sponsor pets, helping shelters and pet owners cover the costs of pet care.
+
+8. **User Reviews and Ratings**: Allowing users to review and rate their adoption experiences, helping to build trust and improve the platform.
+
+9. **Email Notifications**: Implementing email notifications to keep users informed about their pets, received adoption requests, and updates on adoption request statuses. These notifications will ensure users are always up-to-date with their activities on the platform.
+
+
+These enhancements will help make the Adopets Platform an even more valuable resource for pet lovers and ensure that every pet finds a loving home.
