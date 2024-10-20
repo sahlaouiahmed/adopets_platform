@@ -205,6 +205,23 @@ We tested the `AdoptionRequestFilterForm` to confirm that users can filter adopt
 ### 9. AboutViewTests
 - **test_about_view_status_code**: Ensures the about view returns a status code of 200 and uses the correct template.
 
+## Credits
+
+### Tools and Technologies
+
+- **Django**: The high-level Python web framework that enabled rapid development.
+- **Bootstrap**: For styling and responsive design.
+- **Font Awesome**: For beautiful and scalable icons.
+- **Crispy Forms**: For better form styling and control.
+- **TestCase**: For writing comprehensive tests to ensure the application works as expected.
+
+### Inspiration
+
+- Inspired by various pet adoption platforms that aim to simplify and enhance the pet adoption process.
+- Referenced best practices from several online resources and tutorials to enhance the functionality and design of the project, including:
+  - **Django Documentation**: Official documentation for Django, covering everything from installation to advanced features.
+  - **Bootstrap Documentation**: Official documentation for Bootstrap, including examples and templates for responsive design.
+  - **Stack Overflow**: A community-driven Q&A site where you can find answers to a wide range of programming questions.
 
 
 ## Future Enhancements
