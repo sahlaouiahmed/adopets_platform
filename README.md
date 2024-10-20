@@ -71,7 +71,7 @@ Bootstrap is a popular front-end framework for developing responsive and mobile-
 - **Submit Adoption Request**: Potential adopters can express their interest in adopting a pet by submitting an adoption request. They can write a message to the pet owner explaining why they are a good fit for the pet.
 - **View Adoption Requests**: Pet owners can view the adoption requests they have received, including messages from potential adopters. This allows them to review and respond to requests directly from their dashboard.
 
-![AdoptionRequests](static/images/readme_photos/AdoptionRequest_Model.png)
+![AdoptionRequests](static/images/readme_photos/AdoptionRequests.png)
 
 ### Pet Care Articles
 - **Browse Articles**: Users can explore a comprehensive library of pet care articles covering various topics such as feeding, grooming, training, and health. The articles are designed to provide valuable information to pet owners and adopters.
