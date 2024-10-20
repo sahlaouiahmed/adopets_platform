@@ -87,25 +87,6 @@ Bootstrap is a popular front-end framework for developing responsive and mobile-
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## Entity-Relationship Diagrams (ERD)
 
 Here are the ERDs for each model in the Adopets Platform database.
@@ -221,22 +202,8 @@ We tested the `AdoptionRequestFilterForm` to confirm that users can filter adopt
 - **test_delete_article_view_message**: Ensures a success message is displayed after the article is deleted.
 - **test_delete_article_view_login_required**: Ensures the view redirects to the login page if the user is not logged in.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+### 9. AboutViewTests
+- **test_about_view_status_code**: Ensures the about view returns a status code of 200 and uses the correct template.
 
 
 
