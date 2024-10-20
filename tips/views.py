@@ -3,35 +3,26 @@ from .models import Article
 from django.contrib.auth.decorators import login_required
 from .forms import ArticleForm
 from django.contrib import messages
-
-
-
-
-# Create your views here.
 from django.core.paginator import Paginator
-from django.shortcuts import render
-from .models import Article
 
+# List all articles or filter by category
 def article_list(request):
     category = request.GET.get('category')
     if category:
         articles = Article.objects.filter(category=category)
     else:
         articles = Article.objects.all()
-    
     paginator = Paginator(articles, 12)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    
     return render(request, 'tips/article_list.html', {'articles': page_obj.object_list, 'page_obj': page_obj})
 
-
+# View a specific article by ID
 def article_detail(request, article_id):
     article = get_object_or_404(Article, id=article_id)
     return render(request, 'tips/article_detail.html', {'article': article})
 
-
-
+# Add a new article (login required)
 @login_required
 def add_article(request):
     if request.method == 'POST':
@@ -45,22 +36,18 @@ def add_article(request):
         form = ArticleForm()
     return render(request, 'tips/add_article.html', {'form': form})
 
-
-
-from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib.auth.decorators import login_required
-from django.contrib import messages
-from .forms import ArticleForm
-from .models import Article
-
+# View articles authored by the logged-in user (login required)
 @login_required
 def my_articles(request):
     articles = Article.objects.filter(author=request.user)
     return render(request, 'tips/my_articles.html', {'articles': articles})
 
+# Edit an existing article by ID (login required)
 @login_required
 def edit_article(request, article_id):
-    article = get_object_or_404(Article, id=article_id, author=request.user)
+    article = get_object_or_404(Article, id=article_id)
+    if request.user != article.author:
+        return redirect('my_articles')
     if request.method == 'POST':
         form = ArticleForm(request.POST, instance=article)
         if form.is_valid():
@@ -71,6 +58,7 @@ def edit_article(request, article_id):
         form = ArticleForm(instance=article)
     return render(request, 'tips/edit_article.html', {'form': form})
 
+# Delete an article by ID (login required)
 @login_required
 def delete_article(request, article_id):
     article = get_object_or_404(Article, id=article_id, author=request.user)

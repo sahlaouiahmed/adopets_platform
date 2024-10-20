@@ -53,7 +53,7 @@
         </div>
     </form>
     <div class="grid-container mt-4">
-        {% for pet in page_obj.object_list %}
+        {% for pet in page_obj %}
         <div class="card">
             <img src="{{ pet.photo.url }}" class="card-img-top img-fluid" alt="{{ pet.name }}">
             <div class="card-body">
@@ -102,6 +102,7 @@
             {% endif %}
         </ul>
     </nav>
+
 
 </div>
 <br><br>

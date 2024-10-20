@@ -178,6 +178,48 @@ We tested the `PetSearchForm` to ensure that users can search for pets based on 
 #### Adoption Request Filter Form
 We tested the `AdoptionRequestFilterForm` to confirm that users can filter adoption requests based on their status (pending, approved, rejected). The form was tested with valid, empty, and invalid data to ensure proper functionality.
 
+### Views Tests
+
+### 1. IndexViewTests
+- **test_index_view_status_code**: Ensures the index view returns a status code of 200 and uses the correct template.
+- **test_index_view_filters**: Tests the filter functionality to ensure pets can be filtered by species, breed, city, country, and posted_by.
+- **test_index_view_pagination**: Ensures pagination works and pets are displayed across different pages correctly.
+
+### 2. PetDetailViewTests
+- **test_pet_detail_view_status_code**: Ensures the pet detail view returns a status code of 200 and uses the correct template.
+- **test_pet_detail_view_content**: Ensures the pet detail view contains the correct pet information.
+
+### 3. MyAdoptionRequestsViewTests
+- **test_my_adoption_requests_view_status_code**: Ensures the adoption requests view returns a status code of 200 and uses the correct template.
+- **test_my_adoption_requests_view_with_requests**: Ensures the view displays the user's adoption requests.
+- **test_my_adoption_requests_view_with_filter**: Ensures the view filters adoption requests by status.
+- **test_my_adoption_requests_view_no_requests**: Ensures the view handles the case with no adoption requests.
+- **test_login_required**: Ensures the view redirects to the login page if the user is not logged in.
+
+### 4. AddArticleViewTests
+- **test_add_article_view_get**: Ensures the add article view responds correctly to a GET request and uses the correct template.
+- **test_add_article_view_post_valid**: Ensures a valid POST request redirects to the article list and creates a new article.
+- **test_add_article_view_post_invalid**: Ensures an invalid POST request re-renders the form with errors.
+
+### 5. ArticleDetailViewTests
+- **test_article_detail_view_status_code**: Ensures the article detail view returns a status code of 200 and uses the correct template.
+- **test_article_detail_view_content**: Ensures the article detail view contains the correct article information.
+
+### 6. MyArticlesViewTests
+- **test_my_articles_view_status_code**: Ensures the my articles view returns a status code of 200 and uses the correct template.
+- **test_my_articles_view_content**: Ensures the view displays the user's articles.
+- **test_login_required**: Ensures the view redirects to the login page if the user is not logged in.
+
+### 7. EditArticleViewTests
+- **test_edit_article_view_status_code**: Ensures the edit article view returns a status code of 200 and uses the correct template.
+- **test_edit_article_view_post_valid**: Ensures a valid POST request redirects to the my articles page and updates the article.
+- **test_edit_article_view_post_invalid**: Ensures an invalid POST request re-renders the form with errors.
+- **test_edit_article_view_permission_denied**: Ensures a user who is not the author of the article is redirected.
+
+### 8. DeleteArticleViewTests
+- **test_delete_article_view_status_code**: Ensures the delete article view returns a status code of 302 and redirects correctly.
+- **test_delete_article_view_message**: Ensures a success message is displayed after the article is deleted.
+- **test_delete_article_view_login_required**: Ensures the view redirects to the login page if the user is not logged in.
 
 
 

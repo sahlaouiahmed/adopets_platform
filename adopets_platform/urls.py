@@ -5,10 +5,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 
-
-
 urlpatterns = [
-    path('', views.index, name='home'),
+    path('', views.index, name='index'),
     path('adopt_request/<int:pet_id>/', views.adopt_request, name='adopt_request'),
     path('success/', success_page, name='success_page'),
     path('pets/<int:pet_id>/', views.pet_detail, name='pet_detail'),
@@ -20,6 +18,8 @@ urlpatterns = [
     path('add-pet/', add_pet, name='add_pet'),
     path('edit_pet/<int:pet_id>/', edit_pet, name='edit_pet'),
     path('delete_pet/<int:pet_id>/', delete_pet, name='delete_pet'),
+    path('update_status/<int:request_id>/', views.update_status, name='update_status'),
+
 ] 
 
 

@@ -70,6 +70,9 @@ class AdoptionRequestFilterForm(forms.Form):
     status = forms.ChoiceField(choices=STATUS_CHOICES, required=False, widget=forms.Select(attrs={'class': 'form-control'}))
 
 # Form for submitting pet details
+from django import forms
+from adopets_platform.models import Pet
+
 class PetForm(forms.ModelForm):
     class Meta:
         model = Pet

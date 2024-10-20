@@ -1,21 +1,12 @@
 {% extends "base.html" %}
-{% load crispy_forms_tags %}
-{% block title %}Add a New Pet{% endblock %}
+
 {% block content %}
-<div class="container mt-5">
-    <h2 class="text-center mb-4">Add a New Pet</h2>
+  <div class="container">
+    <h2>Add a New Pet</h2>
     <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <div class="form-group">
-            <label for="id_gender">Gender:</label>
-            <select name="gender" id="id_gender" class="form-control">
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-            </select>
-        </div>
-        <button type="submit" class="btn btn-primary btn-sm">Add Pet</button>
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary">Add Pet</button>
     </form>
-</div>
-<br><br>
+  </div>
 {% endblock %}

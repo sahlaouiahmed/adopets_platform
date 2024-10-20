@@ -8,12 +8,14 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from django.contrib import messages
+from django.core.paginator import Paginator
 
 
-# Display the home page with search functionality
+# Display the index page with search functionality
 def index(request):
     form = PetSearchForm(request.GET)
     pets = Pet.objects.all()
+
     if form.is_valid():
         if form.cleaned_data['species']:
             pets = pets.filter(species__icontains=form.cleaned_data['species'])
@@ -25,12 +27,12 @@ def index(request):
             pets = pets.filter(country__icontains=form.cleaned_data['country'])
         if form.cleaned_data['posted_by']:
             pets = pets.filter(posted_by__username__icontains=form.cleaned_data['posted_by'])
-
-    paginator = Paginator(pets, 10)  
+    
+    paginator = Paginator(pets, 10) 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-
-    return render(request, 'adopets_platform/index.html', {'form': form, 'page_obj': page_obj})
+    
+    return render(request, 'adopets_platform/index.html', {'form': form, 'page_obj': page_obj, 'paginator': paginator})
 
 
 # Display the details of a specific pet
@@ -41,13 +43,13 @@ def pet_detail(request, pet_id):
 # Handle user registration
 def signup(request):
     if request.method == 'POST':
-        form = UserRegistrationForm(request.POST)
+        form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('home')
+            return redirect('index')
     else:
-        form = UserRegistrationForm()
+        form = UserCreationForm()
     return render(request, 'signup.html', {'form': form})
 
 # Submit an adoption request for a pet
@@ -61,10 +63,10 @@ def adopt_request(request, pet_id):
         form = AdoptionRequestForm(request.POST, initial={'email': requester_email})
         if form.is_valid():
             adoption_request = form.save(commit=False)
-            adoption_request.email = requester_email  # Set email from the logged-in user
-            adoption_request.user = request.user  # Associate the request with the user
+            adoption_request.email = requester_email 
+            adoption_request.user = request.user  
             adoption_request.pet = pet
-            adoption_request.requester = request.user  # Set the requester_id
+            adoption_request.requester = request.user  
             adoption_request.save()
             return redirect('success_page')
     else:
@@ -97,6 +99,7 @@ def received_adoption_requests(request):
 
 # Update the status of an adoption request
 @require_POST
+@login_required
 def update_status(request, request_id):
     adoption_request = get_object_or_404(AdoptionRequest, id=request_id)
     new_status = request.POST.get('status')
@@ -109,6 +112,7 @@ def update_status(request, request_id):
     return redirect('received_adoption_requests')
 
 # Display the pets posted by the user
+@login_required
 def my_posted_pets(request):
     if request.user.is_authenticated:
         posted_pets = Pet.objects.filter(posted_by=request.user)
@@ -117,6 +121,7 @@ def my_posted_pets(request):
         return redirect('account_login')
 
 # Add a new pet to the platform
+@login_required
 def add_pet(request):
     if request.method == 'POST':
         form = PetForm(request.POST, request.FILES)
@@ -124,13 +129,17 @@ def add_pet(request):
             pet = form.save(commit=False)
             pet.posted_by = request.user
             pet.save()
-            return redirect('home')
+            messages.success(request, 'Pet added successfully!')
+            return redirect('index')
+        else:
+            messages.error(request, 'There was an error adding your pet. Please try again.')
     else:
         form = PetForm()
     return render(request, 'adopets_platform/add_pet.html', {'form': form})
 
 # Delete an adoption request made by the user
 @require_POST
+@login_required
 def delete_adoption_request(request, request_id):
     adoption_request = get_object_or_404(AdoptionRequest, id=request_id, requester=request.user)
     adoption_request.delete()
