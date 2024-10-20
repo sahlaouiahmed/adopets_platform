@@ -210,6 +210,7 @@ We tested the `AdoptionRequestFilterForm` to confirm that users can filter adopt
 ### Tools and Technologies
 
 - **Django**: The high-level Python web framework that enabled rapid development.
+- **PostgreSQL**: For robust and scalable database 
 - **Bootstrap**: For styling and responsive design.
 - **Font Awesome**: For beautiful and scalable icons.
 - **Crispy Forms**: For better form styling and control.
