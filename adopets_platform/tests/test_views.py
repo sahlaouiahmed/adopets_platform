@@ -346,3 +346,6 @@ class DeletePetViewTests(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, f'/accounts/login/?next={self.url}')
 
+
+
+######################################

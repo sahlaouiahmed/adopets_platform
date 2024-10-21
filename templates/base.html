@@ -1,7 +1,4 @@
-{% load static %}
-{% url 'account_login' as login_url %}
-{% url 'account_signup' as signup_url %}
-{% url 'account_logout' as logout_url %}
+{% load static %}{% url 'account_login' as login_url %}{% url 'account_signup' as signup_url %}{% url 'account_logout' as logout_url %}{% url 'index' as index_url %}{% url 'article_list' as article_list_url %}{% url 'about' as about_url %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,23 +11,21 @@
 </head>
 <body>
     <div class="d-flex flex-column min-vh-100">
-        <header class="bg-dark text-white text-center py-3">
-            <div class="container">
-                <h5 class="mb-0">ADOPETS PLATFORM</h5>
-            </div>
-        </header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-1">
             <div class="container">
-                <a class="navbar-brand" href="{% url 'index' %}">Home</a>
+                <a class="navbar-brand" href="{% url 'index' %}">Adopets</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
+                        <li class="nav-item {% if request.path == index_url %}active{% endif %}">
+                            <a class="nav-link" href="{% url 'index' %}">Home</a>
+                        </li>
+                        <li class="nav-item {% if request.path == article_list_url %}active{% endif %}">
                             <a class="nav-link" href="{% url 'article_list' %}">Pet Care Tips</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item {% if request.path == about_url %}active{% endif %}">
                             <a class="nav-link" href="{% url 'about' %}">About Us</a>
                         </li>
                     </ul>
@@ -50,10 +45,10 @@
                             </div>
                         </li>
                         {% else %}
-                        <li class="nav-item">
+                        <li class="nav-item {% if request.path == login_url %}active{% endif %}">
                             <a class="nav-link" href="{% url 'account_login' %}">Login</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item {% if request.path == signup_url %}active{% endif %}">
                             <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
                         </li>
                         {% endif %}
@@ -61,7 +56,6 @@
                 </div>
             </div>
         </nav>
-        
         <main class="flex-grow-1 page-container mt-4">
             {% block content %}
             {% endblock %}

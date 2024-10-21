@@ -12,6 +12,10 @@ from django.core.paginator import Paginator
 
 
 # Display the index page with search functionality
+from django.shortcuts import render
+from .models import Pet
+from .forms import PetSearchForm
+
 def index(request):
     form = PetSearchForm(request.GET)
     pets = Pet.objects.all()
@@ -27,12 +31,10 @@ def index(request):
             pets = pets.filter(country__icontains=form.cleaned_data['country'])
         if form.cleaned_data['posted_by']:
             pets = pets.filter(posted_by__username__icontains=form.cleaned_data['posted_by'])
-    
-    paginator = Paginator(pets, 10) 
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    
-    return render(request, 'adopets_platform/index.html', {'form': form, 'page_obj': page_obj, 'paginator': paginator})
+
+    return render(request, 'adopets_platform/index.html', {'form': form, 'pets': pets})
+
+
 
 
 # Display the details of a specific pet
