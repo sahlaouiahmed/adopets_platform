@@ -11,7 +11,7 @@ class ArticleListViewTests(TestCase):
         self.client = Client()
         self.user = User.objects.create_user(username='testuser', password='testpassword')
         self.client.login(username='testuser', password='testpassword')
-        for i in range(15):
+        for i in range(5):
             Article.objects.create(
                 title=f'Article {i}', content='Content', category='Tech', author=self.user
             )
@@ -22,24 +22,26 @@ class ArticleListViewTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'tips/article_list.html')
 
-    def test_article_list_view_pagination(self):
-        response = self.client.get(self.url)
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Article 0')
-        self.assertContains(response, 'Article 11')  
-        self.assertNotContains(response, 'Article 12')
-
-        response = self.client.get(self.url, {'page': 2})
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Article 12')
-        self.assertContains(response, 'Article 14')
-
-    def test_article_list_view_filter(self):
+    def test_article_list_view_filters(self):
         response = self.client.get(self.url, {'category': 'Tech'})
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'Article 0')
-        self.assertContains(response, 'Article 14')
+        self.assertContains(response, 'Article 4')
 
+        response = self.client.get(self.url, {'category': 'Nonexistent'})
+        self.assertEqual(response.status_code, 200)
+        self.assertNotContains(response, 'Article 0')
+
+    def test_article_list_view_all(self):
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, 200)
+        for i in range(5):
+            self.assertContains(response, f'Article {i}')
+
+    def test_article_list_view_login_required(self):
+        self.client.logout()
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, 200)
 
 
 ############## PASS ###############

@@ -12,10 +12,8 @@ def article_list(request):
         articles = Article.objects.filter(category=category)
     else:
         articles = Article.objects.all()
-    paginator = Paginator(articles, 12)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    return render(request, 'tips/article_list.html', {'articles': page_obj.object_list, 'page_obj': page_obj})
+    return render(request, 'tips/article_list.html', {'articles': articles})
+
 
 # View a specific article by ID
 def article_detail(request, article_id):

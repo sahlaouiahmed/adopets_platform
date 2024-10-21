@@ -348,4 +348,53 @@ class DeletePetViewTests(TestCase):
 
 
 
-######################################
+################# PASS #####################
+from django.test import TestCase, Client
+from django.urls import reverse
+from django.contrib.auth.models import User
+from adopets_platform.models import Pet
+
+class IndexViewTests(TestCase):
+
+    def setUp(self):
+        self.client = Client()
+        self.user = User.objects.create_user(username='testuser', password='testpassword')
+        for i in range(15):
+            Pet.objects.create(
+                name=f'Buddy{i}', species='Dog', breed='Golden Retriever', age=3,
+                gender='Male', description='Friendly and energetic', photo='path/to/photo',
+                city='Pet City', country='Petland', posted_by=self.user
+            )
+        self.url = reverse('index')
+
+    def test_index_view_status_code(self):
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'adopets_platform/index.html')
+
+    def test_index_view_filters(self):
+        # Test filtering by species
+        response = self.client.get(self.url, {'species': 'Dog'})
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Buddy0')
+        
+        # Test filtering by breed
+        response = self.client.get(self.url, {'breed': 'Golden Retriever'})
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Buddy0')
+        
+        # Test filtering by city
+        response = self.client.get(self.url, {'city': 'Pet City'})
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Buddy0')
+        
+        # Test filtering by country
+        response = self.client.get(self.url, {'country': 'Petland'})
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Buddy0')
+        
+        # Test filtering by posted_by
+        response = self.client.get(self.url, {'posted_by': 'testuser'})
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Buddy0')
+

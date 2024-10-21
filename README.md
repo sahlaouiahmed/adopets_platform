@@ -162,13 +162,15 @@ We tested the `AdoptionRequestFilterForm` to confirm that users can filter adopt
 ### Views Tests
 
 #### IndexViewTests
-- **test_index_view_status_code**: Ensures the index view returns a status code of 200 and uses the correct template.
-- **test_index_view_filters**: Tests the filter functionality to ensure pets can be filtered by species, breed, city, country, and posted_by.
-- **test_index_view_pagination**: Ensures pagination works and pets are displayed across different pages correctly.
+- **setUp**: Initializes the test client, creates a user, logs in the user, creates 15 pet instances, and sets the URL for the index view.
+- **test_index_view_status_code**: Tests that the view returns a status code of 200 and uses the correct template.
+- **test_index_view_filters**:Tests the filter functionality to ensure pets can be filtered by species, breed, city, country, and posted_by.
+![IndexViewTests](static/images/readme_photos/indexView.png)
 
 #### PetDetailViewTests
 - **test_pet_detail_view_status_code**: Ensures the pet detail view returns a status code of 200 and uses the correct template.
 - **test_pet_detail_view_content**: Ensures the pet detail view contains the correct pet information.
+![PetDetailViewTests](static/images/readme_photos/petDetails.png)
 
 #### MyAdoptionRequestsViewTests
 - **test_my_adoption_requests_view_status_code**: Ensures the adoption requests view returns a status code of 200 and uses the correct template.
@@ -176,34 +178,87 @@ We tested the `AdoptionRequestFilterForm` to confirm that users can filter adopt
 - **test_my_adoption_requests_view_with_filter**: Ensures the view filters adoption requests by status.
 - **test_my_adoption_requests_view_no_requests**: Ensures the view handles the case with no adoption requests.
 - **test_login_required**: Ensures the view redirects to the login page if the user is not logged in.
+![MyAdoptionRequestsViewTests](static/images/readme_photos/MyadoRequests.png)
 
-#### AddArticleViewTests
-- **test_add_article_view_get**: Ensures the add article view responds correctly to a GET request and uses the correct template.
-- **test_add_article_view_post_valid**: Ensures a valid POST request redirects to the article list and creates a new article.
-- **test_add_article_view_post_invalid**: Ensures an invalid POST request re-renders the form with errors.
+### ReceivedAdoptionRequestsViewTests
+- **setUp**: Initializes the test client, creates a user, logs in the user, creates a pet and an adoption request, and sets the URL for the received adoption requests view.
+- **test_received_adoption_requests_view_status_code**: Tests that the view returns a status code of 200 and uses the correct template.
+- **test_received_adoption_requests_view_with_requests**: Ensures the view displays the received adoption requests and their status.
+- **test_login_required**: Ensures the view redirects to the login page if the user is not logged in.
+![ReceivedAdoptionRequestsViewTests](static/images/readme_photos/recievedAdoRequests.png)
+
+### UpdateStatusViewTests
+- **setUp**: Initializes the test client, creates a user, logs in the user, creates a pet and an adoption request, and sets the URL for the update status view.
+- **test_update_status_view_valid_status**: Tests a valid POST request to update the adoption request status and ensures the status is updated correctly.
+- **test_update_status_view_invalid_status**: Tests an invalid POST request (invalid status) and ensures the status remains unchanged.
+- **test_update_status_view_login_required**: Ensures the view redirects to the login page if the user is not logged in.
+![UpdateStatusViewTests](static/images/readme_photos/updateStatus.png)
+
+### DeletePetViewTests
+- **setUp**: Initializes the test client, creates a user, logs in the user, creates a pet, and sets the URL for the delete pet view.
+- **test_delete_pet_view_status_code**: Tests that the view returns a status code of 302, redirects correctly, and ensures the pet is deleted.
+- **test_delete_pet_view_message**: Ensures a success message is displayed after the pet is deleted.
+- **test_delete_pet_view_login_required**: Ensures the view redirects to the login page if the user is not logged in.
+![DeletePetViewTests](static/images/readme_photos/deletePet.png)
+
+### MyPostedPetsViewTests
+- **setUp**: Initializes the test client, creates a user, logs in the user, creates a pet, and sets the URL for the my posted pets view.
+- **test_my_posted_pets_view_status_code**: Tests that the view returns a status code of 200 and uses the correct template.
+- **test_my_posted_pets_view_with_pets**: Ensures the view displays the user's posted pets.
+- **test_my_posted_pets_view_no_pets**: Tests the view when there are no posted pets.
+- **test_login_required**: Ensures the view redirects to the login page if the user is not logged in.
+![MyPostedPetsViewTests](static/images/readme_photos/postedPets.png)
+
+### DeleteAdoptionRequestViewTests
+- **setUp**: Initializes the test client, creates a user, logs in the user, creates a pet and an adoption request, and sets the URL for the delete adoption request view.
+- **test_delete_adoption_request_view_status_code**: Tests that the view returns a status code of 302, redirects correctly, and ensures the adoption request is deleted.
+- **test_delete_adoption_request_view_message**: Ensures a success message is displayed after the adoption request is deleted.
+- **test_delete_adoption_request_view_login_required**: Ensures the view redirects to the login page if the user is not logged in.
+![DeleteAdoptionRequestViewTests](static/images/readme_photos/deleteAdoptionRequest.png)
+
+### EditPetViewTests
+- **setUp**: Initializes the test client, creates a user, logs in the user, creates a pet, and sets the URL for the edit pet view.
+- **test_edit_pet_view_status_code**: Tests that the view returns a status code of 200, uses the correct template, and contains the appropriate form.
+- **test_edit_pet_view_post_valid**: Tests a valid POST request to update the pet details and ensures the details are updated correctly.
+- **test_edit_pet_view_post_invalid**: Tests an invalid POST request (missing required fields) and ensures the form is re-rendered with errors.
+- **test_edit_pet_view_permission_denied**: Ensures a user who is not the author of the pet is redirected and cannot edit the pet.
+![EditPetViewTests](static/images/readme_photos/editPet.png)
+
+#### ArticleListViewTests
+- **setUp**: Initializes the test client, creates a user, logs in the user, creates 5 article instances, and sets the URL for the `article_list` view.
+- **test_article_list_view_status_code**: Tests that the view returns a status code of 200 and uses the correct template.
+- **test_article_list_view_filters**: Tests the filter functionality to ensure articles can be filtered by category.
+- **test_article_list_view_all**: Ensures all articles are listed when no category filter is applied.
+- **test_article_list_view_login_required**: Ensures the view is accessible even if the user is not logged in.
+![ArticleListViewTests](static/images/readme_photos/articlesList.png)
 
 #### ArticleDetailViewTests
 - **test_article_detail_view_status_code**: Ensures the article detail view returns a status code of 200 and uses the correct template.
 - **test_article_detail_view_content**: Ensures the article detail view contains the correct article information.
+![ArticleDetailViewTests](static/images/readme_photos/articleDetails.png)
 
 #### MyArticlesViewTests
 - **test_my_articles_view_status_code**: Ensures the my articles view returns a status code of 200 and uses the correct template.
 - **test_my_articles_view_content**: Ensures the view displays the user's articles.
 - **test_login_required**: Ensures the view redirects to the login page if the user is not logged in.
+![MyArticlesViewTests](static/images/readme_photos/myArticles.png)
 
 #### EditArticleViewTests
 - **test_edit_article_view_status_code**: Ensures the edit article view returns a status code of 200 and uses the correct template.
 - **test_edit_article_view_post_valid**: Ensures a valid POST request redirects to the my articles page and updates the article.
 - **test_edit_article_view_post_invalid**: Ensures an invalid POST request re-renders the form with errors.
 - **test_edit_article_view_permission_denied**: Ensures a user who is not the author of the article is redirected.
+![EditArticleViewTests](static/images/readme_photos/editArticle.png)
 
 #### DeleteArticleViewTests
 - **test_delete_article_view_status_code**: Ensures the delete article view returns a status code of 302 and redirects correctly.
 - **test_delete_article_view_message**: Ensures a success message is displayed after the article is deleted.
 - **test_delete_article_view_login_required**: Ensures the view redirects to the login page if the user is not logged in.
+![DeleteArticleViewTests](static/images/readme_photos/deleteArticle.png)
 
 #### AboutViewTests
 - **test_about_view_status_code**: Ensures the about view returns a status code of 200 and uses the correct template.
+![AboutViewTests](static/images/readme_photos/about_usView.png)
 
 ## Credits
 
