@@ -138,7 +138,7 @@ Here's the Entity-Relationship Diagram (ERD) for the Django standard User model:
 
 
 
-## Testing
+## Automated Unit Tests
 
 To ensure the robustness and reliability of the Adopets Platform, we created comprehensive tests for all forms using Django's `TestCase` framework. Here are the details of the tests we implemented:
 
@@ -172,6 +172,13 @@ We tested the `AdoptionRequestFilterForm` to confirm that users can filter adopt
 - **test_pet_detail_view_content**: Ensures the pet detail view contains the correct pet information.
 ![PetDetailViewTests](static/images/readme_photos/petDetails.png)
 
+#### AddPetViewTests
+- **setUp**: Initializes the test client, creates a user, logs in the user, and sets the URL for the `add_pet` view.
+- **test_add_pet_view_get**: Tests that the view responds correctly to a GET request, uses the correct template, and contains the appropriate form.
+- **test_add_pet_view_post_valid**: Tests a valid POST request to add a new pet, checks for a redirect to the `index` page, and verifies that the new pet was created.
+- **test_add_pet_view_post_invalid**: Tests an invalid POST request (missing required fields), ensures the form is re-rendered with errors, and verifies that no pet is created.
+![AddPetViewTests](static/images/readme_photos/addPet.png)
+
 #### MyAdoptionRequestsViewTests
 - **test_my_adoption_requests_view_status_code**: Ensures the adoption requests view returns a status code of 200 and uses the correct template.
 - **test_my_adoption_requests_view_with_requests**: Ensures the view displays the user's adoption requests.
@@ -180,28 +187,28 @@ We tested the `AdoptionRequestFilterForm` to confirm that users can filter adopt
 - **test_login_required**: Ensures the view redirects to the login page if the user is not logged in.
 ![MyAdoptionRequestsViewTests](static/images/readme_photos/MyadoRequests.png)
 
-### ReceivedAdoptionRequestsViewTests
+#### ReceivedAdoptionRequestsViewTests
 - **setUp**: Initializes the test client, creates a user, logs in the user, creates a pet and an adoption request, and sets the URL for the received adoption requests view.
 - **test_received_adoption_requests_view_status_code**: Tests that the view returns a status code of 200 and uses the correct template.
 - **test_received_adoption_requests_view_with_requests**: Ensures the view displays the received adoption requests and their status.
 - **test_login_required**: Ensures the view redirects to the login page if the user is not logged in.
 ![ReceivedAdoptionRequestsViewTests](static/images/readme_photos/recievedAdoRequests.png)
 
-### UpdateStatusViewTests
+#### UpdateStatusViewTests
 - **setUp**: Initializes the test client, creates a user, logs in the user, creates a pet and an adoption request, and sets the URL for the update status view.
 - **test_update_status_view_valid_status**: Tests a valid POST request to update the adoption request status and ensures the status is updated correctly.
 - **test_update_status_view_invalid_status**: Tests an invalid POST request (invalid status) and ensures the status remains unchanged.
 - **test_update_status_view_login_required**: Ensures the view redirects to the login page if the user is not logged in.
 ![UpdateStatusViewTests](static/images/readme_photos/updateStatus.png)
 
-### DeletePetViewTests
+#### DeletePetViewTests
 - **setUp**: Initializes the test client, creates a user, logs in the user, creates a pet, and sets the URL for the delete pet view.
 - **test_delete_pet_view_status_code**: Tests that the view returns a status code of 302, redirects correctly, and ensures the pet is deleted.
 - **test_delete_pet_view_message**: Ensures a success message is displayed after the pet is deleted.
 - **test_delete_pet_view_login_required**: Ensures the view redirects to the login page if the user is not logged in.
 ![DeletePetViewTests](static/images/readme_photos/deletePet.png)
 
-### MyPostedPetsViewTests
+#### MyPostedPetsViewTests
 - **setUp**: Initializes the test client, creates a user, logs in the user, creates a pet, and sets the URL for the my posted pets view.
 - **test_my_posted_pets_view_status_code**: Tests that the view returns a status code of 200 and uses the correct template.
 - **test_my_posted_pets_view_with_pets**: Ensures the view displays the user's posted pets.
@@ -209,14 +216,14 @@ We tested the `AdoptionRequestFilterForm` to confirm that users can filter adopt
 - **test_login_required**: Ensures the view redirects to the login page if the user is not logged in.
 ![MyPostedPetsViewTests](static/images/readme_photos/postedPets.png)
 
-### DeleteAdoptionRequestViewTests
+#### DeleteAdoptionRequestViewTests
 - **setUp**: Initializes the test client, creates a user, logs in the user, creates a pet and an adoption request, and sets the URL for the delete adoption request view.
 - **test_delete_adoption_request_view_status_code**: Tests that the view returns a status code of 302, redirects correctly, and ensures the adoption request is deleted.
 - **test_delete_adoption_request_view_message**: Ensures a success message is displayed after the adoption request is deleted.
 - **test_delete_adoption_request_view_login_required**: Ensures the view redirects to the login page if the user is not logged in.
 ![DeleteAdoptionRequestViewTests](static/images/readme_photos/deleteAdoptionRequest.png)
 
-### EditPetViewTests
+#### EditPetViewTests
 - **setUp**: Initializes the test client, creates a user, logs in the user, creates a pet, and sets the URL for the edit pet view.
 - **test_edit_pet_view_status_code**: Tests that the view returns a status code of 200, uses the correct template, and contains the appropriate form.
 - **test_edit_pet_view_post_valid**: Tests a valid POST request to update the pet details and ensures the details are updated correctly.
@@ -259,6 +266,55 @@ We tested the `AdoptionRequestFilterForm` to confirm that users can filter adopt
 #### AboutViewTests
 - **test_about_view_status_code**: Ensures the about view returns a status code of 200 and uses the correct template.
 ![AboutViewTests](static/images/readme_photos/about_usView.png)
+
+## Test Files
+
+You can find the test cases for views in the `test_views.py` file. [Click here to view the file on GitHub](https://github.com/sahlaouiahmed/adopets_platform/blob/main/adopets_platform/tests/test_views.py)
+## Deployment
+
+This project is deployed to Heroku using the GitHub integration. Follow the steps below to deploy a version of this project.
+
+### Steps to Deploy
+
+1. **Create a Heroku App**:
+   - Log in to a Heroku account and create a new app by clicking the "New" button on the dashboard and selecting "Create new app." Provide the app a unique name and select the appropriate region.
+
+2. **Connect GitHub Repository**:
+   - In the Deploy tab of the newly created app, locate the "Deployment method" section.
+   - Select "GitHub" as the deployment method.
+   - Connect the GitHub account and select the repository to deploy.
+
+3. **Environment Variables**:
+   - Set up environment variables in the "Settings" tab of the Heroku app. Add the following environment variables:
+     - `SECRET_KEY`: The Django secret key.
+     - `DATABASE_URL`: The database URL.
+
+4. **Procfile**:
+   - Ensure a `Procfile` with the following content is present:
+     ```
+     web: gunicorn CI_project4.wsgi
+     ```
+
+5. **Collect Static Files**:
+   - Ensure `settings.py` is configured to collect static files. Add the following settings:
+     ```python
+     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+     STATIC_URL = '/static/'
+
+     # Extra places for collectstatic to find static files.
+     STATICFILES_DIRS = (
+         os.path.join(BASE_DIR, 'static'),
+     )
+     ```
+
+6. **Push to GitHub**:
+   - Ensure all changes are committed to the GitHub repository.
+
+7. **Deploy via Heroku Dashboard**:
+   - In the Deploy tab, scroll down to the "Manual deploy" section.
+   - Select the main branch.
+   - Click "Deploy Branch."
+
 
 ## Credits
 

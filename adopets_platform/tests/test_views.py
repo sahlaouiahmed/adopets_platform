@@ -398,3 +398,56 @@ class IndexViewTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'Buddy0')
 
+###########################################
+from django.test import TestCase, Client
+from django.urls import reverse
+from django.contrib.auth.models import User
+from django.core.files.uploadedfile import SimpleUploadedFile
+from adopets_platform.models import Pet
+from adopets_platform.forms import PetForm
+from PIL import Image
+import tempfile
+
+class AddPetViewTests(TestCase):
+
+    def setUp(self):
+        self.client = Client()
+        self.user = User.objects.create_user(username='testuser', password='testpassword')
+        self.client.login(username='testuser', password='testpassword')
+        self.url = reverse('add_pet')
+
+    def test_add_pet_view_get(self):
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'adopets_platform/add_pet.html')
+        self.assertIsInstance(response.context['form'], PetForm)
+
+    def test_add_pet_view_post_valid(self):
+        # Create a temporary image file
+        with tempfile.NamedTemporaryFile(suffix=".jpg") as tmp:
+            image = Image.new('RGB', (100, 100))
+            image.save(tmp, format='JPEG')
+            tmp.seek(0)
+            photo = SimpleUploadedFile(tmp.name, tmp.read(), content_type='image/jpeg')
+            data = {
+                'name': 'Buddy',
+                'species': 'Dog',
+                'breed': 'Golden Retriever',
+                'age': 3,
+                'gender': 'Male',
+                'description': 'Friendly and energetic',
+                'city': 'Pet City',
+                'country': 'Petland',
+                'photo': photo
+            }
+            response = self.client.post(self.url, data)
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, reverse('index'))
+        self.assertTrue(Pet.objects.filter(name='Buddy').exists())
+
+    def test_add_pet_view_post_invalid(self):
+        data = {'name': ''}  # Invalid data: missing required fields
+        response = self.client.post(self.url, data)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'adopets_platform/add_pet.html')
+        self.assertFalse(Pet.objects.filter(name='').exists())
