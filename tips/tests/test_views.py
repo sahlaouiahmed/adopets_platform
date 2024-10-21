@@ -4,7 +4,7 @@ from tips.models import Article
 from django.contrib.auth.models import User
 from tips.forms import ArticleForm
 
-
+################ PASS ###################
 class ArticleListViewTests(TestCase):
 
     def setUp(self):

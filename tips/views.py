@@ -9,9 +9,9 @@ from django.core.paginator import Paginator
 def article_list(request):
     category = request.GET.get('category')
     if category:
-        articles = Article.objects.filter(category=category)
+        articles = Article.objects.filter(category=category).order_by('-created_at')
     else:
-        articles = Article.objects.all()
+        articles = Article.objects.all().order_by('-created_at')
     return render(request, 'tips/article_list.html', {'articles': articles})
 
 
@@ -29,6 +29,7 @@ def add_article(request):
             article = form.save(commit=False)
             article.author = request.user
             article.save()
+            messages.success(request, 'Article added successfully.')
             return redirect('article_list')
     else:
         form = ArticleForm()

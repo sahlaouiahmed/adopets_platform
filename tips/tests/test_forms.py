@@ -1,9 +1,7 @@
 from django.test import TestCase
-from .forms import ArticleForm
-from .models import Article
+from tips.forms import ArticleForm
 
 class ArticleFormTest(TestCase):
-
     def test_form_valid_data(self):
         """
         Test that the form is valid with valid data.

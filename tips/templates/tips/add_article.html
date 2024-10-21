@@ -4,6 +4,13 @@
 {% block content %}
 <div class="container mt-5">
     <h2 class="text-center mb-4">Create New Article</h2>
+    {% if messages %}
+    <div class="alert alert-success" role="alert">
+        {% for message in messages %}
+        {{ message }}
+        {% endfor %}
+    </div>
+    {% endif %}
     <form method="post">
         {% csrf_token %}
         {{ form|crispy }}
@@ -13,6 +20,5 @@
         </div>
     </form>
 </div>
-<br>
-<br>
+<br><br>
 {% endblock %}
