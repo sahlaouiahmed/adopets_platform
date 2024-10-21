@@ -12,10 +12,6 @@ from django.core.paginator import Paginator
 
 
 # Display the index page with search functionality
-from django.shortcuts import render
-from .models import Pet
-from .forms import PetSearchForm
-
 def index(request):
     form = PetSearchForm(request.GET)
     pets = Pet.objects.all()
