@@ -5,6 +5,8 @@ import sys
 
 
 def main():
+    # Load the environment variables from env.py
+    import env
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'CI_project4.settings')
     try:
